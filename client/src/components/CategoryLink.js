@@ -11,7 +11,6 @@ else{
         <Link to={`/games/category/${category.name}`}>
         <p title={`${category.games.length} ${category.name} game${category.games.length==1?'':'s'}`}>{category.name} {category.games.length}</p>
         </Link>
-
     </span>
   )
 }

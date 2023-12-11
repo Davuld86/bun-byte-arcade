@@ -20,11 +20,12 @@ export default function ReviewForm({handleSubmit}) {
         handleSubmit(values)
         actions.resetForm()
     }}
+    
     validationSchema={reviewSchema}
     >
     {({values, errors, touched}) =>
         <Form>
-            <Field type='radio' name='score' value='0'/>
+            <Field type='radio' name='score' value='0' />
             <Field type='radio' name='score' value='1'/>
             <Field type='radio' name='score' value='2'/>
             <Field type='radio' name='score' value='3'/>

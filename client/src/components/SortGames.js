@@ -13,26 +13,31 @@ export default function SortGames() {
     const [isLoading, setLoading] = useState(true)
     const location = useLocation()
 
+
+    const sortByNestedListLength = (a, b) => {
+        const lengthA = a.favorited_by.length;
+        const lengthB = b.favorited_by.length;
+
+        return lengthA - lengthB;
+      };
+
     useEffect(() => {
-        fetch("/all_games").then((r) => {
-          if (r.ok) {
-            r.json().then((d)=>{
-               switch(window.location.pathname.slice(12)){
-                case 'new':
-                    setGames(d.sort((a,b)=>
-                         a.release_date-b.release_date
-                    ))
-                case 'popular':
-                    setGames(d.sort((a,b)=>
-                         a.favorited_by.length - b.favorited_by.length
-                    ))
-                case 'random':
-                    setGames(d.sort(()=>Math.random() - 0.5))
+        setSort(window.location.pathname.slice(12))
+        switch(window.location.pathname.slice(12)){
+            case 'new':
+            fetch("/api/recent_games").then((r) => {
+            if (r.ok) {
+                r.json().then((d)=>{setGames((games)=> games=d)})
+            }
+        })
+            case 'popular':
+                fetch("/all_games").then((r) => {
+                    if (r.ok) {
+                        r.json().then((d)=>{setGames((games)=> games=d.sort(sortByNestedListLength))})
+                    }
+                })
                }
-               setLoading(false)
-            });
-          }
-        });
+        setLoading(false)
       }, [location])
 
 function resort(){
@@ -43,9 +48,7 @@ function resort(){
                 b.release_date-a.release_date
             ))
         case 'popular':
-            setGames((g)=>g=games.sort((a,b)=>
-              a.favorited_by.length - b.favorited_by.length
-            ))
+            setGames((g)=>g=games.sort(sortByNestedListLength))
 
         case 'random':
             setGames(games.sort(()=>Math.random() - 0.5))

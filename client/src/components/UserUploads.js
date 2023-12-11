@@ -39,7 +39,7 @@ if(loaded){
   }
   else if(user){
     return (
-    <div>
+    <div className='game-container'>
       <h1>Games Created by {user.username}:</h1>
       {logged?<UploadedGamesContainer games={user.posts} user={user.id} logged={logged.id}/>: null}
     </div>

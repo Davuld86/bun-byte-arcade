@@ -35,7 +35,7 @@ useEffect(() => {
         });
       }
       else{
-        r.json().then((error)=> {setError(error); console.log(error)})
+        r.json().then((error)=> {setError(error);})
       }
     })
     .then(
@@ -68,31 +68,33 @@ function updateScore(reviews, newReview){
     return newReview.score
   }
   else{
+    reviews.forEach(review=>{
 
+      sc+=parseInt(review.game_score)
+    })
+    sc+=parseInt(newReview.score)
+    let ns= (sc/(reviews.length+1))
+    setGameScore(ns)
+
+    return parseInt(sc)
   }
-  reviews.forEach((review)=>{
-    sc= sc+review.game_score
-  })
-  sc= sc+ newReview.score
-  let newScore = sc/(reviews.length+1)
-  setGameScore( parseInt(newScore))
-  return parseInt(newScore)
+
 
 }
 
 function updateDelete(){
   let sc = 0
   if (gameReviews[0]){
-    sc= 0
-  }
-  else{
     gameReviews.forEach((review)=>{
       sc= sc+review.game_score
     })
      sc = sc/(gameReviews.length)
   }
-  console.log(sc)
-  return sc
+  else{
+   sc=0
+  }
+
+  return parseInt(sc)
 }
 
 function handleSubmit(review){
@@ -163,7 +165,7 @@ return (
         <h1>{game.title}</h1>
         <EmbedGame source={game.path}/>
         <span style={{display:'flex', justifyContent:'space-between'}} className=' game-attributes'>
-        <p>Score: {gameScore} </p>
+        <p>Score: {gameScore} /5 </p>
         <p>Favorites: {favTally} </p>
         <p>Total plays: {game.playcount? game.playcount:0} </p>
         <p>Published: {gameDate} </p>

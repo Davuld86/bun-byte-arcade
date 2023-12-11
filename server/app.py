@@ -39,7 +39,7 @@ class AllGames(Resource):
         return[game.to_dict() for game in games],200
 class RecentGames(Resource):
     def get(self):
-        games = Game.query.order_by(Game.release_date.desc()).limit(20).all()
+        games = Game.query.order_by(Game.release_date.desc()).all()
         if games:
             return [game.to_dict() for game in games],200
         return {'error': 'No games found!'}
@@ -234,7 +234,6 @@ class AllCategories(Resource):
             return [category.to_dict() for category in categories],200
         else:
             return {'error': 'No categories found'}
-
 
 # Views go here!
 api.add_resource(AllGames, '/all_games')

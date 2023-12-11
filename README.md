@@ -23,10 +23,10 @@ Welcome to Bun-Byte Arcade, a rabbit-themed online game site. Play games, Write 
 Dive into a diverse collection of games across genres. Whether you're into action, puzzles, or simulations, Bun-Byte Arcade has something for everyone.
 
 ### 2. Write Reviews
-Express your thoughts about games by writing reviews. Share your experiences, rate games, and help other gamers discover new favorites.
+Express your thoughts about games by writing reviews.
 
 ### 3. Upload Your Games
-Calling all game creators! Share your own game creations with the Bun-Byte community. Let others play, enjoy, and provide valuable feedback on your work.
+Upload games using the upload game form.
 
 ### 4. Searching Games
 You are able to search games by it's title, or if you know what category the game belongs to, use the category bar provided.
